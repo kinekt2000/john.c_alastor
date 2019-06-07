@@ -1,6 +1,7 @@
 #include <unistd.h>
 #include <termios.h>
 #include <sys/select.h>
+#include <sys/ioctl.h>
 
 #include <stdio.h>
 #include <time.h>
@@ -76,8 +77,19 @@ char gameover(snake *player);
 char food_exists(part *food);
 
 struct termios oldattr, newattr;
+struct winsize ws;
 
 int main(void){
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
+	if (ws.ws_col < 66 || ws.ws_row < 37){
+		printf(	"You should make your terminal bigger\n\n"
+			"At least:\n"
+			"66 sybols horizontal,\n"
+			"37 symbols vertical.\n"
+			"For best result open terminal as full window.\n");
+		return 0;
+	}
+
 	tcgetattr(STDIN_FILENO, &oldattr);
 	newattr = oldattr;
 	newattr.c_lflag &= ~(ICANON | ECHO);
