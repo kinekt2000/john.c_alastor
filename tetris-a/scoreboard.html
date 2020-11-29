@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="scoreboard_script.js"></script>
+
+    <style>
+        #scoreboard span {
+            float: left;
+        }
+
+        #scoreboard span:first-of-type {
+            width: 250px;
+        }
+
+        li {
+            border-bottom: 1px solid black;
+        }
+
+        ol {
+            width: 350px;
+        }
+    </style>
+</head>
+
+<body onload="onLoad()">
+    <p>Scoreboard!</p>
+
+    <ol id="scoreboard">
+
+    </ol>
+
+    <button type="button" onclick="window.location.href='index.html'">Exit!</button>
+</body>
+</html>
